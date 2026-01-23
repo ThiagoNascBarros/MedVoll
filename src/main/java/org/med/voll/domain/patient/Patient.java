@@ -24,6 +24,7 @@ public class Patient {
     private String email;
     private String cpf;
     private String telefone;
+    private Boolean isActive;
 
     @Embedded
     private Address endereco;
@@ -34,5 +35,6 @@ public class Patient {
         this.telefone = json.telefone();
         this.cpf = json.cpf();
         this.endereco = new Address(json.endereco());
+        this.isActive = true;
     }
 }
