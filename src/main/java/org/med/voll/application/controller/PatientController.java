@@ -1,8 +1,8 @@
-package org.med.voll.controller;
+package org.med.voll.application.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.med.voll.communication.request.patient.RequestRegisterPatient;
+import org.med.voll.application.communication.request.patient.RequestRegisterPatient;
 import org.med.voll.domain.patient.IPatientRepository;
 import org.med.voll.domain.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package org.med.voll.communication.request.patient;
+package org.med.voll.application.communication.request.patient;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

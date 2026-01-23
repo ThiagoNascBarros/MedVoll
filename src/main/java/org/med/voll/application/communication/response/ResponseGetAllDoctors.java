@@ -1,4 +1,4 @@
-package org.med.voll.communication.response;
+package org.med.voll.application.communication.response;
 
 import org.med.voll.domain.doctor.Doctor;
 import org.med.voll.domain.doctor.enums.ESpecialty;

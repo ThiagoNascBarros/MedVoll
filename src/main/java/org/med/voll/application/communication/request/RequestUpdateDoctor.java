@@ -1,7 +1,7 @@
-package org.med.voll.communication.request;
+package org.med.voll.application.communication.request;
 
 import jakarta.validation.constraints.NotNull;
-import org.med.voll.communication.request.doctor.RequestRegisterDoctorAddress;
+import org.med.voll.application.communication.request.doctor.RequestRegisterDoctorAddress;
 
 public record RequestUpdateDoctor(
         @NotNull

@@ -4,8 +4,8 @@ import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.med.voll.communication.request.doctor.RequestRegisterDoctorAddress;
-import org.med.voll.communication.request.patient.RequestRegisterPatientAddress;
+import org.med.voll.application.communication.request.doctor.RequestRegisterDoctorAddress;
+import org.med.voll.application.communication.request.patient.RequestRegisterPatientAddress;
 
 @Getter
 @NoArgsConstructor

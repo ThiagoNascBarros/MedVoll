@@ -1,4 +1,4 @@
-package org.med.voll.communication.request.doctor;
+package org.med.voll.application.communication.request.doctor;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
