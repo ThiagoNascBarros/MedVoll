@@ -3,6 +3,7 @@ package org.med.voll.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.med.voll.communication.request.RequestUpdateDoctor;
 import org.med.voll.communication.request.doctor.RequestRegisterDoctor;
 import org.med.voll.communication.response.ResponseGetAllDoctors;
 import org.med.voll.domain.doctor.Doctor;
@@ -31,6 +32,13 @@ public class DoctorController {
     public Page<ResponseGetAllDoctors> List(@PageableDefault(size = 5, sort = {"nome"}) Pageable page){
         return repository.findAll(page)
                 .map(ResponseGetAllDoctors::new);
+    }
+
+    @PutMapping()
+    @Transactional
+    public void Update(@RequestBody @Valid RequestUpdateDoctor request) {
+        var doctor = repository.findById(request.id());
+        doctor.ifPresent(value -> value.updatingInfo(request));
     }
 
 }

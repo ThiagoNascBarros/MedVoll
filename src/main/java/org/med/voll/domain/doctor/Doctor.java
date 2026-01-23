@@ -5,9 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.med.voll.communication.request.RequestUpdateDoctor;
 import org.med.voll.communication.request.doctor.RequestRegisterDoctor;
 import org.med.voll.domain.address.Address;
-import org.med.voll.domain.enums.ESpecialty;
+import org.med.voll.domain.doctor.enums.ESpecialty;
 
 @Getter
 @NoArgsConstructor
@@ -36,5 +37,19 @@ public class Doctor {
         this.crm = json.crm();
         this.especialidade = json.especialidade();
         this.endereco = new Address(json.endereco());
+    }
+
+    public void updatingInfo(RequestUpdateDoctor request) {
+        if (request.nome() != null) {
+            this.nome = request.nome();
+        }
+
+        if (request.telefone() != null) {
+            this.telefone = request.telefone();
+        }
+
+        if (request.endereco() != null) {
+            this.endereco.updatingInfo(request.endereco());
+        }
     }
 }
