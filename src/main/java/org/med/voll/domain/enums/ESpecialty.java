@@ -1,4 +1,4 @@
-package org.med.voll.domain;
+package org.med.voll.domain.enums;
 
 public enum ESpecialty {
 
