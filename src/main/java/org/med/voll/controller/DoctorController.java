@@ -30,7 +30,7 @@ public class DoctorController {
 
     @GetMapping
     public Page<ResponseGetAllDoctors> List(@PageableDefault(size = 5, sort = {"nome"}) Pageable page){
-        return repository.findAll(page)
+        return repository.findAllByIsActiveTrue(page)
                 .map(ResponseGetAllDoctors::new);
     }
 
@@ -38,7 +38,17 @@ public class DoctorController {
     @Transactional
     public void Update(@RequestBody @Valid RequestUpdateDoctor request) {
         var doctor = repository.findById(request.id());
-        doctor.ifPresent(value -> value.updatingInfo(request));
+        doctor.ifPresent(value -> {
+            value.updatingInfo(request);
+            log.info("Doctor com o CRM {} atualizado com sucesso!", doctor.get().getCrm());
+        });
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public void Delete(@PathVariable Long id){
+        var doctor = repository.getReferenceById(id);
+        doctor.delete();
     }
 
 }

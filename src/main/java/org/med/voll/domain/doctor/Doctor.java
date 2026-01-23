@@ -30,6 +30,8 @@ public class Doctor {
     @Embedded
     private Address endereco;
 
+    private Boolean isActive;
+
     public Doctor(RequestRegisterDoctor json) {
         this.nome = json.nome();
         this.email = json.email();
@@ -37,6 +39,7 @@ public class Doctor {
         this.crm = json.crm();
         this.especialidade = json.especialidade();
         this.endereco = new Address(json.endereco());
+        this.isActive = true;
     }
 
     public void updatingInfo(RequestUpdateDoctor request) {
@@ -51,5 +54,9 @@ public class Doctor {
         if (request.endereco() != null) {
             this.endereco.updatingInfo(request.endereco());
         }
+    }
+
+    public void delete() {
+        this.isActive = false;
     }
 }
