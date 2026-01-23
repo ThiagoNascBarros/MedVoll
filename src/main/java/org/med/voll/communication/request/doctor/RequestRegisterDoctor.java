@@ -1,6 +1,6 @@
 package org.med.voll.communication.request.doctor;
 
-import org.med.voll.domain.ESpecialty;
+import org.med.voll.domain.enums.ESpecialty;
 
 public record RequestRegisterDoctor(String nome,
                                     String email,
