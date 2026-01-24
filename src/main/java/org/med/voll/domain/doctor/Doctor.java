@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.med.voll.application.communication.request.RequestUpdateDoctor;
+import org.med.voll.application.communication.request.doctor.RequestUpdateDoctor;
 import org.med.voll.application.communication.request.doctor.RequestRegisterDoctor;
 import org.med.voll.domain.address.Address;
 import org.med.voll.domain.doctor.enums.ESpecialty;

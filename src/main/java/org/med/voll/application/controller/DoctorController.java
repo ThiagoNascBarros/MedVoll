@@ -3,7 +3,7 @@ package org.med.voll.application.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.med.voll.application.communication.request.RequestUpdateDoctor;
+import org.med.voll.application.communication.request.doctor.RequestUpdateDoctor;
 import org.med.voll.application.communication.request.doctor.RequestRegisterDoctor;
 import org.med.voll.application.communication.response.ResponseGetAllDoctors;
 import org.med.voll.domain.doctor.Doctor;
