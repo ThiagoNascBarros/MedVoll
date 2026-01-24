@@ -38,4 +38,18 @@ public class Patient {
         this.endereco = new Address(json.endereco());
         this.isActive = true;
     }
+
+    public void updateInfo(RequestUpdatePatient request) {
+        if (request.nome() != null) {
+            this.nome = request.nome();
+        }
+
+        if (request.telefone() != null) {
+            this.telefone = request.telefone();
+        }
+
+        if (request.endereco() != null) {
+            this.endereco.updatingInfo(request.endereco());
+        }
+    }
 }

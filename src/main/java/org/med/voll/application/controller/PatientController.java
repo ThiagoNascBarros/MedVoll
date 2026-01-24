@@ -2,15 +2,19 @@ package org.med.voll.application.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import lombok.extern.log4j.Log4j2;
+import org.med.voll.application.communication.request.patient.RequestUpdatePatient;
 import org.med.voll.application.communication.request.patient.RequestRegisterPatient;
+import org.med.voll.application.communication.response.ResponseGetAllPatient;
 import org.med.voll.domain.patient.IPatientRepository;
 import org.med.voll.domain.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.*;
 
+@Log4j2
 @RestController
 @RequestMapping("/api/patient")
 public class PatientController {
@@ -29,4 +33,15 @@ public class PatientController {
         return repository.findAllByIsActiveTrue(pageable)
                 .map(ResponseGetAllPatient::new);
     }
+
+    @PutMapping()
+    @Transactional
+    public void Update(@RequestBody @Valid RequestUpdatePatient request) {
+        var patient = repository.findById(request.id());
+        patient.ifPresent(p -> {
+            p.updateInfo(request);
+            log.info("O paciente com id {} foi atualizado", request.id());
+        });
+    }
+
 }
