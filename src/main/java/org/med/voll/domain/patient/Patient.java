@@ -52,4 +52,8 @@ public class Patient {
             this.endereco.updatingInfo(request.endereco());
         }
     }
+
+    public void delete() {
+        this.isActive = false;
+    }
 }
