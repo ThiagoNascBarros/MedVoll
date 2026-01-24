@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: MedVoll
+  data:
+    web:
+      pageable:
+        page-parameter: pagina
+        size-parameter: tamanho
+      sort:
+        sort-parameter: ordem
+
+  datasource:
+    url: jdbc:mysql://localhost/vollmed_api
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+#    Mostrando as querys sql gerenciadas pelo Hibernate
+    show-sql: true
+    properties:
+      hibernate:
+#        Formatando sql gerado pelo Hibernate
+        format_sql: true
