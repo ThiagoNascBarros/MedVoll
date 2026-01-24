@@ -22,3 +22,10 @@ spring:
       hibernate:
 #        Formatando sql gerado pelo Hibernate
         format_sql: true
+  web:
+    error:
+      include-stacktrace: never
+
+#server:
+#  error:
+#    include-stacktrace: never
