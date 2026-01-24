@@ -20,8 +20,13 @@ public class PatientController {
 
     @PostMapping()
     @Transactional
-    public void Register(@RequestBody @Valid RequestRegisterPatient request){
+    public void Register(@RequestBody @Valid RequestRegisterPatient request) {
         repository.save(new Patient(request));
     }
 
+    @GetMapping()
+    public Page<ResponseGetAllPatient> GetAll(@PageableDefault(size = 15, sort = {"nome"}) Pageable pageable) {
+        return repository.findAllByIsActiveTrue(pageable)
+                .map(ResponseGetAllPatient::new);
+    }
 }

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.med.voll.application.communication.request.patient.RequestRegisterPatient;
+import org.med.voll.application.communication.request.patient.RequestUpdatePatient;
 import org.med.voll.domain.address.Address;
 
 @Getter
