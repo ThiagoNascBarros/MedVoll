@@ -1,3 +1,3 @@
-alter table pacientes add is_active tinyint;
+alter table patient add is_active tinyint;
 
-update pacientes set is_active = 1;
+update patient set is_active = 1;
