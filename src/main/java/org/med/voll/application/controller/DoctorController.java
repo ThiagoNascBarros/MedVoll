@@ -45,6 +45,13 @@ public class DoctorController {
         return ResponseEntity.ok(paged);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity GetDoctor(@PathVariable Long id) {
+        var doctor = repository.getReferenceById(id);
+        return ResponseEntity.ok(new ResponseInfoDoctor(doctor));
+    }
+
+
     @PutMapping()
     @Transactional
     public ResponseEntity Update(@RequestBody @Valid RequestUpdateDoctor request) {
