@@ -2,6 +2,7 @@ package org.med.voll.application.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.med.voll.application.communication.request.doctor.RequestUpdateDoctor;
 import org.med.voll.application.communication.request.doctor.RequestRegisterDoctor;
@@ -27,7 +28,7 @@ public class DoctorController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity Register(@RequestBody @Valid RequestRegisterDoctor json, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<@NonNull ResponseInfoDoctor> Register(@RequestBody @Valid RequestRegisterDoctor json, UriComponentsBuilder uriBuilder) {
         var doctor = new Doctor(json);
         repository.save(doctor);
 
@@ -39,14 +40,14 @@ public class DoctorController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ResponseGetAllDoctors>> List(@PageableDefault(size = 5, sort = {"nome"}) Pageable page){
+    public ResponseEntity<@NonNull Page<@NonNull ResponseGetAllDoctors>> List(@PageableDefault(size = 5, sort = {"nome"}) Pageable page){
         var paged = repository.findAllByIsActiveTrue(page)
                 .map(ResponseGetAllDoctors::new);
         return ResponseEntity.ok(paged);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity GetDoctor(@PathVariable Long id) {
+    public ResponseEntity<@NonNull ResponseInfoDoctor> GetDoctor(@PathVariable Long id) {
         var doctor = repository.getReferenceById(id);
         return ResponseEntity.ok(new ResponseInfoDoctor(doctor));
     }
@@ -54,7 +55,7 @@ public class DoctorController {
 
     @PutMapping()
     @Transactional
-    public ResponseEntity Update(@RequestBody @Valid RequestUpdateDoctor request) {
+    public ResponseEntity<@NonNull ResponseInfoDoctor> Update(@RequestBody @Valid RequestUpdateDoctor request) {
         var doctor = repository.getReferenceById(request.id());
         doctor.updatingInfo(request);
 
@@ -63,7 +64,7 @@ public class DoctorController {
 
     @DeleteMapping("{id}")
     @Transactional
-    public ResponseEntity Delete(@PathVariable Long id){
+    public ResponseEntity<?> Delete(@PathVariable Long id){
         var doctor = repository.getReferenceById(id);
         doctor.delete();
         return ResponseEntity.noContent().build();

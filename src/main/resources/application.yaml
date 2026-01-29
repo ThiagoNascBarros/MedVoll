@@ -1,3 +1,8 @@
+api:
+  security:
+    token:
+      wsecret: ${JWT_SECRET:aolisughd97YASDGBAS&*D678astdagsba78das6dasd8ab}
+
 spring:
   application:
     name: MedVoll
