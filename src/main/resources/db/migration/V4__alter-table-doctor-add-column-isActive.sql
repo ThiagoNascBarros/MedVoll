@@ -1,3 +1,3 @@
-alter table doctors add is_active tinyint;
+alter table doctor add is_active tinyint;
 
-update doctors set is_active = 1;
+update doctor set is_active = 1;

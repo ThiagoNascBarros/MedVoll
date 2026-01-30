@@ -1,4 +1,4 @@
-create table doctors
+create table doctor
 (
 
     id            bigint       not null auto_increment,
