@@ -31,7 +31,7 @@ public class AuthController {
         var authenticationToken = new UsernamePasswordAuthenticationToken(request.login(), request.password());
         var authentication = manager.authenticate(authenticationToken);
 
-        if (authentication.isAuthenticated()) {
+        if (!authentication.isAuthenticated()) {
             return ResponseEntity.badRequest().body("Usuário ou senha incorretos");
         }
 

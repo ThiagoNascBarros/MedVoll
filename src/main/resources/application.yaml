@@ -1,9 +1,13 @@
 api:
   security:
     token:
-      wsecret: ${JWT_SECRET:aolisughd97YASDGBAS&*D678astdagsba78das6dasd8ab}
+      secret: ${JWT_SECRET:aolisughd97YASDGBAS&*D678astdagsba78das6dasd8ab}
 
 spring:
+  devtools:
+    restart:
+      poll-interval: 2s
+      quiet-period: 1s
   application:
     name: MedVoll
   data:
