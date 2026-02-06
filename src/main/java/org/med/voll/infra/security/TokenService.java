@@ -26,7 +26,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("API VollMed")
                     .withSubject(user.getLogin())
-                    .withClaim("id", user.getId())
+                    .withClaim("username", user.getUsername())
                     .withExpiresAt(dateExpirate())
                     .sign(algoritimo);
 
@@ -49,7 +49,7 @@ public class TokenService {
     }
 
     private Instant dateExpirate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusHours(4).toInstant(ZoneOffset.of("-03:00"));
     }
 
 }

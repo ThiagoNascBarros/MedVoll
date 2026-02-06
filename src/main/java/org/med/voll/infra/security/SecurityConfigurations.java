@@ -35,7 +35,7 @@ public class SecurityConfigurations {
     }
 
     @Bean // Deixando visivel para o Spring poder utilizar quando for pedido como prop e com anotação Autowired
-    public AuthenticationManager managerBean(AuthenticationConfiguration config) {
+    public AuthenticationManager manager(AuthenticationConfiguration config) {
         return config.getAuthenticationManager();
     }
 

@@ -15,16 +15,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/api/auth")
 @AllArgsConstructor
 public class AuthController {
 
     @Autowired
-    private final AuthenticationManager manager;
+    private AuthenticationManager manager;
 
     @Autowired
-    private final TokenService tokenService;
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity Login(@RequestBody @Valid RequestUserLogin request) {
@@ -35,7 +37,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Usuário ou senha incorretos");
         }
 
-        var tokenJWT = tokenService.generateToken((User) authentication.getPrincipal());
+        var tokenJWT = tokenService.generateToken((User) Objects.requireNonNull(authentication.getPrincipal()));
 
         return ResponseEntity.ok(new ResponseUserLoginToken(tokenJWT));
     }

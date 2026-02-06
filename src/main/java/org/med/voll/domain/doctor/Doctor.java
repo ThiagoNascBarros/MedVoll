@@ -14,7 +14,7 @@ import org.med.voll.domain.doctor.enums.ESpecialty;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Table(name = "doctors")
+@Table(name = "doctor")
 @Entity(name = "Doctor")
 public class Doctor {
 
