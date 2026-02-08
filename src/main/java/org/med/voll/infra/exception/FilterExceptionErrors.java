@@ -23,6 +23,11 @@ public class FilterExceptionErrors {
                 .toList());
     }
 
+    @ExceptionHandler(ErrorOnValidation.class)
+    public ResponseEntity TreatErrorOfValidation(ErrorOnValidation exception) {
+        return ResponseEntity.badRequest().body(exception.getMessage());
+    }
+
 
     private record ResponseExceptionError400(String field, String message) {
         private ResponseExceptionError400(FieldError error) {

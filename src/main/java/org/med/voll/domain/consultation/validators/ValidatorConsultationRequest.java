@@ -52,7 +52,7 @@ public class ValidatorConsultationRequest extends AbstractValidator<RequestRegis
                 .must(d -> {
                     var doctor = doctorRepository.findByActiveDoctor(d);
                     if (doctor == null) {
-                        throw new RuntimeException("Médico Nulo karalho");
+                        throw new RuntimeException("Médico Nulo");
                     }
                     return true;
                 })

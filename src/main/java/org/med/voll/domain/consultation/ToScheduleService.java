@@ -1,6 +1,7 @@
 package org.med.voll.domain.consultation;
 
 import br.com.fluentvalidator.context.Error;
+import lombok.extern.log4j.Log4j2;
 import org.med.voll.application.communication.request.consultation.RequestRegisterToSchedule;
 import org.med.voll.application.communication.response.Response;
 import org.med.voll.domain.consultation.validators.ValidatorConsultationRequest;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Log4j2
 public class ToScheduleService {
 
     @Autowired
@@ -40,7 +42,7 @@ public class ToScheduleService {
 
             result.setErrors(list);
 
-            return result;
+            throw  new ErrorOnValidation("Erros na validação do usuário: ", list);
         }
 
         if (!patientRepository.existsById(request.idPatient())){
