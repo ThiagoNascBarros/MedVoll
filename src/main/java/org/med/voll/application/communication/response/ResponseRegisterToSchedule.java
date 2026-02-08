@@ -1,5 +1,7 @@
 package org.med.voll.application.communication.response;
 
+import org.med.voll.application.communication.request.consultation.RequestRegisterToSchedule;
+
 import java.time.LocalDateTime;
 
 public record ResponseRegisterToSchedule(Long id, Long idPatient, Long idDoctor, LocalDateTime date) {
@@ -10,4 +12,5 @@ public record ResponseRegisterToSchedule(Long id, Long idPatient, Long idDoctor,
         this.idDoctor = idDoctor;
         this.date = date;
     }
+
 }

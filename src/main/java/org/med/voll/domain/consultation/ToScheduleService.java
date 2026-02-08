@@ -2,6 +2,7 @@ package org.med.voll.domain.consultation;
 
 import br.com.fluentvalidator.context.Error;
 import org.med.voll.application.communication.request.consultation.RequestRegisterToSchedule;
+import org.med.voll.application.communication.response.Response;
 import org.med.voll.domain.consultation.validators.ValidatorConsultationRequest;
 import org.med.voll.domain.doctor.Doctor;
 import org.med.voll.domain.doctor.IDoctorRepository;
@@ -28,18 +29,18 @@ public class ToScheduleService {
     @Autowired
     private ValidatorConsultationRequest consultationRequest;
 
-    public RequestRegisterToSchedule executeSchedule(RequestRegisterToSchedule request) {
-        var validator = this.consultationRequest;
+    public Response<RequestRegisterToSchedule> executeSchedule(RequestRegisterToSchedule request) {
+        var result = new Response<RequestRegisterToSchedule>();
+        var resultValid = this.consultationRequest.validate(request);
 
-        var result = validator.validate(request);
-
-        if (!result.isValid()) {
-            var list = result.getErrors().stream()
-                    .peek(e -> System.out.println(e.getMessage()))
+        if (!resultValid.isValid()) {
+            var list = resultValid.getErrors().stream()
                     .map(Error::getMessage)
                     .toList();
 
-            throw new ErrorOnValidation("Erros na validação: \n", list);
+            result.setErrors(list);
+
+            return result;
         }
 
         if (!patientRepository.existsById(request.idPatient())){
@@ -57,7 +58,7 @@ public class ToScheduleService {
 
         repository.save(consultation);
 
-        return (new RequestRegisterToSchedule(consultation));
+        return result;
     }
 
     private Doctor chosenDoctor(RequestRegisterToSchedule request) {
