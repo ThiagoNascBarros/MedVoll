@@ -41,20 +41,22 @@ public class ValidatorConsultationRequest extends AbstractValidator<RequestRegis
 
         ruleFor(RequestRegisterToSchedule::idPatient)
                 .must(Predicate.not(nullValue()))
-                    .withMessage("Paciente está com id null");
+                    .withMessage("Paciente está com id null")
+                .must(x -> patientRepository.existsById(x))
+                    .withMessage("Paciente não existe em nossa base de dados");
 
         ruleFor(RequestRegisterToSchedule::idDoctor)
                 .must(Predicate.not(nullValue()))
-                .withMessage("Médico está com id nulo");
+                    .withMessage("Médico está com id nulo")
+                .must(x -> doctorRepository.existsById(x))
+                    .withMessage("Médico não existe em nossa base de dados");
 
         ruleFor(RequestRegisterToSchedule::idDoctor)
                 .must(Objects::nonNull).withMessage("Id da instance é nulo karalho")
                 .must(d -> {
                     var doctor = doctorRepository.findByActiveDoctor(d);
-                    if (doctor == null) {
-                        throw new RuntimeException("Médico Nulo");
-                    }
-                    return true;
+
+                    return doctor != null;
                 })
                 .withMessage("Médico está inativo ou não existe");
 

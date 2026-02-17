@@ -8,8 +8,6 @@ import org.med.voll.domain.consultation.validators.ValidatorConsultationRequest;
 import org.med.voll.domain.doctor.Doctor;
 import org.med.voll.domain.doctor.IDoctorRepository;
 import org.med.voll.domain.patient.IPatientRepository;
-import org.med.voll.infra.exception.ErrorOnNotExistDoctor;
-import org.med.voll.infra.exception.ErrorOnNotExistPatient;
 import org.med.voll.infra.exception.ErrorOnSpecialtyBlankOrNull;
 import org.med.voll.infra.exception.ErrorOnValidation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,14 +41,6 @@ public class ToScheduleService {
             result.setErrors(list);
 
             throw  new ErrorOnValidation("Erros na validação do usuário: ", list);
-        }
-
-        if (!patientRepository.existsById(request.idPatient())){
-            throw new ErrorOnNotExistPatient("Paciente não existe em nossa base de dados");
-        }
-
-        if (request.idDoctor() != null && !doctorRepository.existsById(request.idDoctor())){
-            throw new ErrorOnNotExistDoctor("Médico não existe em nossa base de dados");
         }
 
         var patient = this.patientRepository.findById(request.idPatient()).get();
