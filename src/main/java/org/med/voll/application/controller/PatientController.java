@@ -40,7 +40,6 @@ public class PatientController {
         var patient = repository.findById(request.id());
         patient.ifPresent(p -> {
             p.updateInfo(request);
-            log.info("O paciente com id {} foi atualizado", request.id());
         });
     }
 

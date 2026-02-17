@@ -14,7 +14,7 @@ import org.med.voll.domain.address.Address;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Paciente")
-@Table(name = "pacientes")
+@Table(name = "patient")
 public class Patient {
 
     @Id

@@ -10,7 +10,7 @@ public record RequestRegisterPatientAddress(@NotBlank
                                             String bairro,
 
                                             @NotBlank
-                                            @Pattern(regexp = "\\d{8}")
+                                            @Pattern(regexp = "^(\\d{5}-\\d{3}|\\d{8})$")
                                             String cep,
 
                                             @NotBlank

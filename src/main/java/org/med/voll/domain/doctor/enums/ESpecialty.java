@@ -5,6 +5,7 @@ public enum ESpecialty {
     ORTOPEDIA,
     CARDIOLOGIA,
     GINECOLOGIA,
-    DERMATOLOGIA;
+    DERMATOLOGIA,
+    UROLOGISTA;
 
 }

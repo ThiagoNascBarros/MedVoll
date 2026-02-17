@@ -1,0 +1,1 @@
+alter table consultation add column specialty varchar(30) not null;
